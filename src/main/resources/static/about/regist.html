@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>疫情实时监控系统</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body{
+
+        }
+        nav {
+            font-size: 1.5rem;
+            background-color: skyblue;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: white;
+        }
+
+        li {
+            margin: 10px 20px;
+        }
+
+        th {
+            width: 100px;
+        }
+
+        label {
+            margin: auto;
+            padding-right: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1 align="center" style="color: #1b1e21">欢迎来到注册页面</h1>
+</div>
+
+<div class="container" align="center">
+    <br>
+    <br>
+    <br>
+    <form th:action="@{/regist}" method="post">
+        <div>
+            <span th:text="${msg}" style="background-color: red"></span>
+        </div>
+        <div class="input-group" style="width: 400px">
+            <label for="username">帐&nbsp;&nbsp;&nbsp;&nbsp;号</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="input-group" style="width: 400px">
+            <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+            <input type="text" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="input-group" style="width: 400px">
+            <label for="name">姓&nbsp;&nbsp;&nbsp;&nbsp;名</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="input-group" style="width: 400px">
+            <label for="address">地&nbsp;&nbsp;&nbsp;&nbsp;址</label>
+            <input type="text" class="form-control" id="address" name="address" required>
+        </div>
+        <div class="input-group" style="width: 400px">
+            <label for="birth">地&nbsp;&nbsp;&nbsp;&nbsp;区&nbsp;&nbsp;&nbsp;&nbsp;风&nbsp;&nbsp;&nbsp;&nbsp;险&nbsp;&nbsp;&nbsp;&nbsp;程&nbsp;&nbsp;&nbsp;&nbsp;度&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="text" class="form-control" id="birth" name="birth" required>
+        </div>
+        <div class="input-group" style="width: 400px">
+            <label for="telcode">手&nbsp;&nbsp;&nbsp;&nbsp;机&nbsp;&nbsp;&nbsp;&nbsp;号</label>
+            <input type="text" class="form-control" id="telcode" name="telcode" required>
+        </div>
+        <input type="hidden" name="state" value="0">
+        <input type="hidden" name="role" value="user">
+        <input type="submit" value="注    册" class="btn btn-outline-primary btn-lg">
+        <a th:href="@{/login}" class="btn btn-outline-secondary btn-lg" style="margin-left: 40px">取&nbsp;&nbsp;&nbsp;&nbsp;消</a>
+    </form>
+
+</div>
+
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

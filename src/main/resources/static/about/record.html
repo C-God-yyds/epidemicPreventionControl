@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<style>
+			#fanhui {
+				background-color: white;
+			}
+
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+
+			.divz {
+				width: 100%;
+				height: 500px;
+				background-color: lightskyblue;
+			}
+
+			.head {
+				width: 300px;
+				height: 30px;
+				margin: auto;
+			}
+
+			.body {
+				margin: auto;
+				margin-top: 20px;
+			}
+
+			.body1 {
+				width: 320px;
+				height: 20px;
+				margin: auto;
+				margin-top: 10px;
+			}
+
+			.body2 {
+				width: 320px;
+				height: 20px;
+				margin: auto;
+				margin-top: 10px;
+			}
+
+			.body3 {
+				width: 320px;
+				height: 20px;
+				margin: auto;
+				margin-top: 10px;
+			}
+
+			.foot {
+				width: 330px;
+				height: 40px;
+				margin-top: 20px;
+				padding-top: 15px;
+				padding-left: 40px;
+			}
+
+			.head_ziti {
+				text-align: center;
+				padding-top: 5px;
+			}
+
+			.mui-active .mui-icon,
+			.mui-active .mui-tab-label {
+				color: deeppink;
+			}
+
+			#tijiao{
+				width: 200px;
+
+				position: absolute;
+				left: 50%;
+				top: 60%;
+
+				margin: -100px;
+			}
+
+		</style>
+
+	</head>
+
+	<body>
+		<div class="divz">
+			<div class="head">
+				<p class="head_ziti">留言板</p>
+			</div>
+			<a href="index2.html"><button id="fanhui">返回首頁<<</button></a>
+			<form>
+
+				<div class="body">
+					<textarea cols="200" rows="25" id="message" value="请留言：" style="color: gray;">请留言：</textarea>
+				</div>
+				<br /><br /><br /><br />
+				<div id="tijiao">
+					<input type="button" value="保存" id="save">
+					<input type="button" value="清空" id="clear">
+					<input type="button" value="读取" id="read">
+<!--					<button id="btn">关灯</button>-->
+				</div>
+
+			</form>
+		</div>
+		<p id="msg"></p>
+		<script type="text/javascript">
+			document.getElementById("message").onfocus = function() {
+				if(this.value == "请留言：") {
+					this.value = ""
+					this.style.color = "black"
+				}
+			}
+			document.getElementById("message").onblur = function() {
+				if(this.value == "") {
+					this.value = "请留言："
+					this.style.color = "grey"
+				}
+			}
+			window.onload = function() {
+				document.getElementById("save").onclick = function() {
+					var oData = document.getElementById("message").value;
+					var oTime = new Date().getTime();
+					localStorage.setItem(oTime, oData);
+					loadStorage("msg");
+				}
+				document.getElementById("clear").onclick = function() {
+					localStorage.clear();
+					loadStorage("msg");
+				}
+				document.getElementById("read").onclick = function() {
+					loadStorage("msg");
+				}
+			}
+
+			function loadStorage(id) {
+				var oReselt = "";
+				for(var iCv = 0; iCv < localStorage.length; iCv++) {
+					var oValue = localStorage.getItem(localStorage.key(iCv));
+					var oDate = new Date();
+					oDate.setTime(localStorage.key(iCv));
+					var sDate = oDate.toGMTString();
+					if(iCv!=0){
+						oReselt += "<div>" + "这是第" + iCv + "条留言 <strong> <br>" + localStorage.getItem(localStorage.key(iCv)) + "</strong> <br> <span>" + sDate + "</span></div>";
+					}
+				}
+				var oTarget = document.getElementById(id);
+				oTarget.innerHTML = oReselt;
+			}
+		</script>
+		<script>
+			//加载文档对象
+			$(function(){
+				//给按钮添加点击事件
+				$("#btn").click(function (){
+					//判断文本，根据文本设置背景颜色
+					if($(this).text() == "关灯"){
+						//设置文本是开灯
+						$(this).text("开灯")
+						$(".divz").css("backgroundColor","#333333")
+					}else {
+						$(this).text("关灯")
+						$(".divz").css("backgroundColor","white")
+					}
+				})
+			})
+		</script>
+	</body>
+
+</html>
